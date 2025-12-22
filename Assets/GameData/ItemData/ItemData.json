@@ -1,0 +1,18 @@
+{
+  "items": [
+    {
+      "id": 1001,
+      "name": "leaf",
+      "description": "잎파리",
+      "prefabPath": "items/leaf_item_Prefab",
+      "imaghePath": "Items/leaf_item_Image"
+    },
+    {
+      "id": 1002,
+      "name": "soil",
+      "description": "흙",
+      "prefabPath": "items/soil_item_Prefab",
+      "imaghePath": "Items/soil_item_Image"
+    }
+  ]
+}
