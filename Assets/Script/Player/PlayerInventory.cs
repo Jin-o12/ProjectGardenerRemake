@@ -1,13 +1,32 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
+
+enum ItemType
+{
+    Static,     // 고정 아이템 (장비 등)
+    Material    // 소모품 아이템
+}
+
+enum StaticItem
+{
+    Tool,       // 도구
+    Weapon,     // 총기
+    Bullet,     // 탄약(투사체)
+}
 
 public class PlayerInventory : MonoBehaviour
 {
     /* Component */
     private InputSettings InputSettings;
 
+    /* Inventory Data */
+    private Dictionary<String, Item> staticItems = new Dictionary<String, Item>();    // 스태틱 아이템 리스트 (고정적으로 장비되는 아이템)
+    private List<Item> MaterialItems = new List<Item>(); // 소모품 아이템 리스트
+
     void Start()
     {
-        InputSettings = PalyerInfomation.Instance.InputSettings;
+        InputSettings = PlayerManager.Instance.InputSettings;
     }
 
     void Update()

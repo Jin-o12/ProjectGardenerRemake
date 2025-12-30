@@ -1,23 +1,17 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class MonsterSpawner : MonoBehaviour
 {
     [Header("Objects")]
-    [SerializeField] private Collider wouldzone;               // 필드 구역
-    [SerializeField] private Collider spawnzone;               // 몬스터 스폰 구역
-    [SerializeField] private Transform MonsterObjectRoot;   // 몬스터 오브젝트를 가지고 있을 부모 오브젝트, 여기에 몬스터 스폰
+    [SerializeField] private Collider wouldzone;                // 필드 구역
+    [SerializeField] private Collider spawnzone;                // 몬스터 스폰 구역
+    [SerializeField] private Transform MonsterObjectRoot;       // 몬스터 오브젝트를 가지고 있을 부모 오브젝트, 여기에 몬스터 스폰
 
     /* 몬스터 데이터 관리 밎 저장 */
     private List<Monster> nowMonsterList = new List<Monster>();
     private bool MonsterSpawnLoopFlag = true;
-    private int maxAttempts = 50;                           // 몬스터 스폰 최대 시도 횟수 (지나친 스폰 및 연산 방지)
-
-    void Start()
-    {
-        
-    }
+    private int maxAttempts = 50;                               // 몬스터 스폰 최대 시도 횟수 (지나친 스폰 및 연산 방지)
 
     void Update()
     {

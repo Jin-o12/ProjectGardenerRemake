@@ -23,12 +23,12 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-        InputSettings = PalyerInfomation.Instance.InputSettings;
-        moveSpeed = PalyerInfomation.Instance.moveSpeed;
-        dodgeSpeed = PalyerInfomation.Instance.dodgeSpeed;
-        dodgeDuration = PalyerInfomation.Instance.dodgeDuration;
-        dodgeCooldown = PalyerInfomation.Instance.dodgeCooldown;
-        cameraTf = PalyerInfomation.Instance.cameraTf;
+        InputSettings = PlayerManager.Instance.InputSettings;
+        moveSpeed = PlayerManager.Instance.moveSpeed;
+        dodgeSpeed = PlayerManager.Instance.dodgeSpeed;
+        dodgeDuration = PlayerManager.Instance.dodgeDuration;
+        dodgeCooldown = PlayerManager.Instance.dodgeCooldown;
+        cameraTf = PlayerManager.Instance.cameraTf;
         
 
         dodgeCooldownTimer = 0f;

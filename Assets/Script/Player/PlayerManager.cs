@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class PalyerInfomation : MonoBehaviour
+public class PlayerManager : MonoBehaviour
 {
-    public static PalyerInfomation Instance { get; private set; }
+    public static PlayerManager Instance { get; private set; }
 
     [Header("Componentㄴ")]
     public InputSettings InputSettings;         // 입력 설정 컴포넌트

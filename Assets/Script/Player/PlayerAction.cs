@@ -7,7 +7,7 @@ public class PlayerAction : MonoBehaviour
 
     void Start()
     {
-        InputSettings = PalyerInfomation.Instance.InputSettings;
+        InputSettings = PlayerManager.Instance.InputSettings;
     }
 
     void Update()

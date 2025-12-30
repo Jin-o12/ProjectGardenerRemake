@@ -14,6 +14,7 @@ public class Monster
     public int health;              // 몬스터 체력
     public int attack;              // 몬스터 공격력
     public float moveSpeed;         // 몬스터 이동 속도
+    public float attackRange;      // 몬스터 공격 범위
     public GameObject prefab;       // 몬스터 프리팹
     public List<int> dropItem;      // 몬스터 드랍 아이템 리스트
 
@@ -31,7 +32,11 @@ public class Monster
     public int GetHealth() { return health; }
     public float GetMoveSpeed() { return moveSpeed; }
     public int GetAttackPower() { return attack; }
+    public float GetAttackRange() { return attackRange; }
     public GameObject GetPrefab() { return prefab; }
+
+    /* Set Functuions */
+    public void AddHealth(int _health) { health = _health; }
 
     /* 오브젝트 삭제 */
     public void DestroyMonster()
