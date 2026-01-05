@@ -4,7 +4,7 @@ public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager Instance { get; private set; }
 
-    [Header("Componentㄴ")]
+    [Header("Component")]
     public InputSettings InputSettings;         // 입력 설정 컴포넌트
     public Transform cameraTf;                  // 카메라 트랜스폼
 
@@ -16,6 +16,11 @@ public class PlayerManager : MonoBehaviour
     public float dodgeSpeed;                    // 구르기 속도
     public float dodgeDuration;                 // 구르기 지속 시간
     public float dodgeCooldown;                 // 구르기 쿨타임
+
+    [Header ("Player Inventory")]
+    const int eqipmentNum = 2;
+    public int inventorySize;
+
 
     void Awake()
     {

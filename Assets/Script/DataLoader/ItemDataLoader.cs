@@ -1,6 +1,8 @@
 /// <summary>
 /// 아이템 데이터 로더 및 아이템 클래스
-/// 고유 번호: 100번 대 번호를 사용
+/// 고유 번호: 
+///     소모성 아이템: 100번 대 번호 사용
+///     고유 장비: 200번 대 번호 사용, 단 201번은 무기 정보
 /// </summary>
 using UnityEngine;
 using System.Collections.Generic;
@@ -26,12 +28,13 @@ public class Item
     }
 }
 
-/* 총알 아이템 클래스 */
-public class Bullet: Item
+/* 무기 아이템 클래스 */
+public class Weapon: Item
 {
     public int damage;          // 총알 데미지
+    public string FireFuncName; // 발사시 투사체 이동 방식
 
-    public Bullet(int id, string itemName, string description, Sprite icon, int damage, string prefabPath, string imagePath)
+    public Weapon(int id, string itemName, string description, Sprite icon, int damage, string prefabPath, string imagePath)
         : base(id, itemName, description, icon, prefabPath, imagePath)
     {
         this.damage = damage;
@@ -58,12 +61,41 @@ public class ItemDataLoader
     {
         List<ItemDataRapper> itemDataList = new List<ItemDataRapper>();
 
-        // 아이템 데이터 로드 (예: JSON, XML, 데이터베이스 등)
-        // 여기서는 예시로 하드코딩된 데이터를 사용
-        itemDataList.Add(new ItemDataRapper(new Bullet(100, "Basic Bullet", "기본 총알", null, 10, "Prefabs/Bullet", "Images/Bullet")));
-        itemDataList.Add(new ItemDataRapper(new Bullet(101, "Explosive Bullet", "폭발성 총알", null, 20, "Prefabs/ExplosiveBullet", "Images/ExplosiveBullet")));
+        // 아이템 불러오는 코드 (차후 반복문으로 바꾸고 소모성 아이템도 불러오게 할 것)
+        itemDataList.Add(new ItemDataRapper(new Weapon(201, "Gun", "무기", null, 20, "Prefabs/Weapon", "Images/Weapon")));
+        itemDataList.Add(new ItemDataRapper(new Weapon(202, "Basic Bullet", "기본 총알", null, 10, "Prefabs/DefultBullet", "Images/DefultBullet")));
 
         return itemDataList;
+    }
+
+    /* item 데이터 검색 및 반환 */
+    public Item ItemDataFinder(int _id)
+    {
+        Item item;
+        foreach(Item itemData in itemDataList)
+        {
+            if(itemData.id == _id)
+            {
+                item = itemData;
+                break;
+            }
+        }
+        return item;
+    }
+
+    /* Weapon 데이터 검색 및 반환 */
+    public Weapon ItemDataFinder(int _id)
+    {
+        Weapon weapon;
+        foreach(Weapon itemData in itemDataList)
+        {
+            if(itemData.id == _id)
+            {
+                weapon = itemData;
+                break;
+            }
+        }
+        return weapon;
     }
 }
 
