@@ -1,0 +1,14 @@
+{
+  "monsters": [
+    {
+      "id": 1001,
+      "entityName": "leafBunny",
+      "description": "잎파리 토끼",
+      "prefabPath": "Monsters/leafBunn_entity_Prefab",
+      "health": 50,
+      "attack": 0.5,
+      "moveSpeed": 1.0,
+      "dropItem": []
+    }
+  ]
+}

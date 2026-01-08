@@ -1,0 +1,13 @@
+{
+    "_COMMENT": "Item Script Data",
+    
+    "ITEM_NAME_101": "leaf",
+    "ITEM_NAME_102": "soil",
+    "ITEM_NAME_201": "water capsule",
+    "ITEM_NAME_202": "Scatter water capsule",
+
+    "ITEM_DESC_101": "#101 description will write here#",
+    "ITEM_DESC_102": "#102 description will write here#",
+    "ITEM_DESC_201": "#201 description will write here#",
+    "ITEM_DESC_202": "#202 description will write here#"
+}
