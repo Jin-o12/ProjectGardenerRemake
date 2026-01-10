@@ -51,27 +51,33 @@ public class PlayerMovement : MonoBehaviour
     /* 이동 입력 확인 */
     private void MoveInput()
     {
+        /* 0. 구르고 있을 시 리턴시켜 구르기 외 이동하지 않게 함 */
         if (isDodging) return;
 
-        float h = Input.GetAxisRaw("Horizontal");
-        float v = Input.GetAxisRaw("Vertical");
+        /* 1. 키 입력에 따른 방향값 계산 */
 
-        
+        // 앞, 뒤에 대한 방향값을 임시로 만들고 (이후 실수값과 연산될 것이기 때문에 float로 선언)
+        float h = 0f;
+        float v = 0f;
 
-        // 카메라 시야각 기준 이동 방향 교정
+        // 사방향에 대해 입력을 받으면 해당 방향에 대해 1~-1 사이 값으로 판정한다 (0: 두 방향을 동시에 눌러 정지)
+        if (Input.GetKey(InputSettings.MoveUp)) v += 1f; 
+        if (Input.GetKey(InputSettings.MoveDown)) v -= 1f;
+        if (Input.GetKey(InputSettings.MoveRight)) h += 1f;
+        if (Input.GetKey(InputSettings.MoveLeft)) h -= 1f;
 
-        // 카메라 앞, 오른쪽 벡터 구하고 Y축 값 제거
-        Vector3 camFoward = cameraTf.forward;
+        /* 2. 카메라(플레이어 시점)을 기준으로 최종 이동 방향을 결정하는 코드 */
+
+        // 카메라 앞 벡터 구하고 Y축 값 제거 (수평 값은 고정이므로 계산에서 제외)
         Vector3 camRight = cameraTf.right;
-        camFoward.y = 0;
         camRight.y = 0;
-
-        // 벡터 정규화 후 카메라 방향과 이동 방향을 곱해 최종 정규화
-        camFoward.Normalize();
         camRight.Normalize();
-        moveDir = (camFoward*v + camRight*h).normalized;
+        Vector3 camForward = Vector3.Cross(camRight, Vector3.up);
 
-        // 이동 거리 저장하고 FicedUpdata에서 최종 이동 처리
+        // 카메라 방향 * 이동 방향 = 최종 정규화
+        moveDir = (camForward*v + camRight*h).normalized;
+
+        /* 4. 이동 거리 저장하고 FicedUpdata에서 최종 이동 처리 */
     }
 
     /* 이동 처리 */
@@ -96,7 +102,6 @@ public class PlayerMovement : MonoBehaviour
                                                         thisRigidbody.linearVelocity.y, // Y
                                                         moveDir.z*moveSpeed);           // Z
             }
-            
         }
         
     }

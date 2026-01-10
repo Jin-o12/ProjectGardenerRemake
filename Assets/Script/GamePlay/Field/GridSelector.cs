@@ -47,8 +47,8 @@ public class GridHoverSelector : MonoBehaviour
             // 이전에 호버했던 셀과 다른 셀 위에 마우스가 올라왔다면
             if (currentIndex != lastHoveredIndex)
             {
-                // ✨ OnHoverEnter 로직 실행
-                Debug.Log($"마우스가 ({currentIndex.x}, {currentIndex.y}) 셀에 들어왔습니다.");
+                // OnHoverEnter 로직 실행
+                //Debug.Log($"마우스가 ({currentIndex.x}, {currentIndex.y}) 셀에 들어왔습니다.");
 
                 // 하이라이트 위치 업데이트
                 if (currentHighlightQuad != null)
@@ -71,8 +71,8 @@ public class GridHoverSelector : MonoBehaviour
             // 이전에 하이라이트가 켜져 있었다면
             if (lastHoveredIndex.x != -1)
             {
-                // ✨ OnHoverExit 로직 실행
-                Debug.Log($"마우스가 그리드를 벗어났습니다.");
+                // OnHoverExit 로직 실행
+                //Debug.Log($"마우스가 그리드를 벗어났습니다.");
 
                 if (currentHighlightQuad != null)
                 {

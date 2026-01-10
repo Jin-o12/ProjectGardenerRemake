@@ -45,7 +45,7 @@ public class Monster
     }
 }
 
-public class MonsterDataLoader
+public class MonsterDataLoader : MonoBehaviour
 {
     
 }

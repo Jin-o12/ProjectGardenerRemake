@@ -365,6 +365,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0c8af5faedbe6a4eb9e010b43b86767, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nowBullet: {fileID: 1298455643137643191, guid: 603ace97d836fa24d9767023b8b48ab4, type: 3}
 --- !u!114 &36029521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -377,11 +378,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4abc01380c81bf9458b5e5c4ad2a7752, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InputSettings: {fileID: 11400000, guid: f58614338cf92fe44816cf0f609e5909, type: 2}
+  InputSettings: {fileID: 11400000, guid: 51384f70e22e9c04b977a2da01248bc4, type: 2}
   cameraTf: {fileID: 330611549}
   maxHealth: 100
-  moveSpeed: 5
-  dodgeSpeed: 10
+  moveSpeed: 3
+  dodgeSpeed: 5
   dodgeDuration: 0.3
   dodgeCooldown: 0.2
   inventorySize: 0
@@ -410,7 +411,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 4
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!1 &71283733
 GameObject:
@@ -2510,7 +2511,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1455925376}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: e4217bf4eda0be0419469c98caef1302, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

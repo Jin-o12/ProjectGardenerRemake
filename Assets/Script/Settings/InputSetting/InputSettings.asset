@@ -17,8 +17,8 @@ MonoBehaviour:
   MoveLeft: 97
   MoveRight: 100
   Dodge: 32
-  Interact: 323
-  Firing: 325
+  Interact: 324
+  Firing: 323
   QuickSlot1: 49
   QuickSlot2: 50
   QuickSlot3: 51

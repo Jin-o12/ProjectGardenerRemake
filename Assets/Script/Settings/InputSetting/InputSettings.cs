@@ -14,8 +14,8 @@ public class InputSettings : ScriptableObject
     /* 플레이어 상호작용 */
     [Header("Action Keys")]
     public KeyCode Dodge = KeyCode.Space;
-    public KeyCode Interact = KeyCode.Mouse0;
-    public KeyCode Firing = KeyCode.Mouse2;
+    public KeyCode Interact = KeyCode.Mouse1;
+    public KeyCode Firing = KeyCode.Mouse0;
     public KeyCode QuickSlot1 = KeyCode.Alpha1;
     public KeyCode QuickSlot2 = KeyCode.Alpha2;
     public KeyCode QuickSlot3 = KeyCode.Alpha3;
