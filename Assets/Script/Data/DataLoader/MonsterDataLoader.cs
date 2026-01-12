@@ -36,12 +36,12 @@ public class Monster
     public GameObject GetPrefab() { return prefab; }
 
     /* Set Functuions */
-    public void AddHealth(int _health) { health = _health; }
+    public void AddHealth(int _health) { health += _health; }
 
     /* 오브젝트 삭제 */
     public void DestroyMonster()
     {
-        GameObject.Destroy(this.prefab);
+        GameObject.Destroy(this.prefab, 3.0f);
     }
 }
 

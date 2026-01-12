@@ -12,32 +12,46 @@ public class BulletObject : MonoBehaviour
     [Header("기본 틀")]
     public float speed = 10f;
     public float lifeTime = 3f;
-    public SpriteRenderer bodyRenderer; // 이동 스크립트와 콜라이더만 있는 껍데기
+    public int dmg = 2;
     
     [Header("총알 발사를 구현 할 요소들")]
     public GameObject particlePrefab;
     public Sprite bulletImage;
+    //public SpriteRenderer ImageObj; // 이미지를 가질 자식 오브젝트 (회전해야 하기 때문에 별도로 배치)
 
     /* 고정값, 안바꿔도 됨 */
     [Header ("GameObject Info")]
     private Transform FirePoint;
+    public float particleSize;      // 파티클 크기
+    public float visualOffsetY;     // 총알 위치 보정
 
     void Start()
     {
-        // 1. 렌더러 찾기
-        bodyRenderer = GetComponentInChildren<SpriteRenderer>();
-
-        // 2. [조립] 이미지 적용
-        if (bulletImage != null && bodyRenderer != null)
-        {
-            bodyRenderer.sprite = bulletImage;
-        }
-
-        // 3. [조립] 파티클 생성 및 부착
         if (particlePrefab != null)
         {
             // 내 위치에 파티클 생성
             GameObject vfx = Instantiate(particlePrefab, transform.position, transform.rotation);
+
+            // 파티클이 보기에 파뭍히지 않게 y축 보정
+            vfx.transform.localPosition = new Vector3(0, visualOffsetY, 0);
+            vfx.transform.localRotation = Quaternion.identity;
+
+            // 이미지 연결
+            ParticleSystemRenderer psr = vfx.GetComponent<ParticleSystemRenderer>();
+            Material mat = psr.material;            // 머테리얼의 복사본 가져옴
+            mat.mainTexture = bulletImage.texture;  // 메인 텍스쳐를 해당 이미지로 설정
+
+            // 파티클 크기 조정
+            ParticleSystem ps = vfx.GetComponent<ParticleSystem>();
+            if (ps != null)
+            {
+                // 구조체라 변수에 담아서 수정해야 함.
+                var mainModule = ps.main;
+
+                // 인스펙터에서 설정한 크기로 변경
+                // (StartSize는 3D 공간에서의 크기를 의미)
+                mainModule.startSize = particleSize;
+            }
             
             // 나를 부모로 설정 (함께 이동)
             vfx.transform.SetParent(this.transform);
@@ -59,9 +73,11 @@ public class BulletObject : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // 충돌 로직...
         if (other.CompareTag("Enemy"))
         {
+            Debug.Log("dmg: "+dmg);
+            MonsterObject monster = other.GetComponent<MonsterObject>();
+            monster.GetDamage(dmg);
             Destroy(gameObject);
         }
     }
