@@ -1,4 +1,3 @@
-using System.Numerics;
 using UnityEditor.Rendering.BuiltIn.ShaderGraph;
 using UnityEngine;
 
@@ -47,6 +46,16 @@ public class PlayerAction : MonoBehaviour
     /* 발사 액션 실행 */
     private void FireBullet()
     {
-        Instantiate(nowBullet, gameObject.transform.position, gameObject.transform.rotation);
+        // 1. 현재 내 회전값을 가져옴
+        Quaternion currentRot = transform.rotation;
+        
+        // 2. 추가하고 싶은 회전값을 만듦 (Y축 90도)
+        Quaternion addRot = Quaternion.Euler(0, 90, 0);
+
+        // 3. 두 회전을 곱함 (쿼터니언에서 A * B는 A 상태에서 B만큼 더 회전하라는 뜻)
+        Quaternion finalRot = currentRot * addRot;
+
+        // 최종 발사 지점 Transform 값
+        Instantiate(nowBullet, gameObject.transform.position, finalRot);
     }
 }

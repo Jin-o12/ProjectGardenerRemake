@@ -6,7 +6,6 @@
 /// </summary>
 using UnityEngine;
 using System.Collections.Generic;
-using UnityEngine;
 using Newtonsoft.Json;
 
 enum ItemType
