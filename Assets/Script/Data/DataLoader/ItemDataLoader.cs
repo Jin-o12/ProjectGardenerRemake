@@ -14,37 +14,51 @@ enum ItemType
     EQUIP
 }
 
-/// 규칙적이지 않은 텍스트를 정렬하고 싶은데, 어떻게 할지 고민 중 ///
-
 /* 아이템 클래스 */
 public class Item
 {
-    // CSV 순서: ID,Type,ItemKey,NameKey,DescKey,FireType,HitEffectPath,Price
+    /// <summary>
+    /// CSV 데이터 순서를 따라 나열함: 
+    ///     ID,Type,
+    ///     ItemKey,NameKey,DescKey,
+    ///     PrefabPath,ImagePath,
+    ///     FireType,HitEffectPath,damage
+    /// </summary>
 
     // 기본 정보
-    public int id;                  // 아이템 고유 번호
-    public string type;
+    public int id                                   // 아이템 고유 번호
+    { get {return id;} set {id=value;} }
+    public string type                              // 아이템의 종류
+    { get {return type;} set {type=value;} }
 
     // 키 코드
-    public string ItemKey;
-    public string NameKey;
-    public string DescKey;
-
-    public string fireFuncName;     // 발사 함수 이름
-    public string HitEffectPath;    // 히트 이펙트 경로
+    public string ItemKey                           // 아이템 고유 키 (문자열)
+    { get {return ItemKey;} set {ItemKey=value;} }
+    public string NameKey                           // 아이템 이름 텍스트 연결 키
+    { get {return NameKey;} set {NameKey=value;} }
+    public string DescKey                           // 아이템 설명 텍스트 연결 키
+    { get {return DescKey;} set {DescKey=value;} }
 
     // 리소스 경로
-    public string prefabPath;       // 프리팹
-    public string imagePath;        // 이미지
-
-    // 텍스트 데이터 키
-    public string Name => ItemDataLoader.Instance.GetText(NameKey);  // "ITEM_NAME_###"
-    public string Description => ItemDataLoader.Instance.GetText(DescKey);  // "ITEM_DESC_###"
+    public string prefabPath                        // 프리팹
+    { get {return prefabPath;} set {prefabPath=value;} }
+    public string imagePath                         // 이미지
+    { get {return imagePath;} set {imagePath=value;} }
 
     // 전투 정보 (총알 전용)
-    public int damage;              // 데미지
-    
+    public string fireFuncName                      // 발사 함수 이름
+    { get {return fireFuncName;} set {fireFuncName=value;} }
+    public string HitEffectPath                     // 히트 이펙트 경로
+    { get {return HitEffectPath;} set {HitEffectPath=value;} }
+    public int damage                               // 데미지
+    { get {return damage;} set {damage=value;} }
 
+    // 텍스트 데이터 키 (JSON)
+    public string Name                              // 아이템 이름 텍스트 ("ITEM_NAME_###")
+        => ItemDataLoader.Instance.GetText(NameKey);         
+    public string Description                       // 아이템 설명 텍스트 ("ITEM_DESC_###")
+        => ItemDataLoader.Instance.GetText(DescKey);  
+    
     // 필요할 때 아이콘 이미지 로드
     public Sprite LoadIcon()
     {
@@ -79,6 +93,8 @@ public class ItemDataLoader : MonoBehaviour
 
         LoadLocalization("KR"); // 언어 로드  ==>> ※차후 설정 메뉴 제작시 로컬 데이터로 언어 설정 저장되게 바꿀 것※
         LoadItemTable();        // 2. 그 다음 아이템 테이블 로드
+
+        ItemDataList(); // 데이터 로드 확인
     }
 
     /* 언어 타입을 받아 해당하는 언어 파일을 로드한다 */
@@ -101,7 +117,7 @@ public class ItemDataLoader : MonoBehaviour
     public string GetText(string key)
     {
         if (ItmeTextDict.ContainsKey(key)) return ItmeTextDict[key];
-        return key; // 번역 없으면 키값 그대로 리턴 (에러 방지)
+        return key; // 번역 없으면 키값 그대로 표시 (에러 방지)
     }
 
     /* 아이템 데이터(CSV 데이터) 로드 */
@@ -175,6 +191,11 @@ public class ItemDataLoader : MonoBehaviour
         Debug.Log($"아이템 로드 완료: 총 {ItemDataDict.Count}개");
     }
 
+    private void ItemDataList()
+    {
+        Debug.Log($"ItemDataDict: ");
+    }
+    
     // // 외부에서 아이템을 가져가는 함수
     // public Item GetItem(int id)
     // {

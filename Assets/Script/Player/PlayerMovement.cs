@@ -21,6 +21,8 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 moveInput;              // 이동 입력 벡터
     private Vector3 dodgeDir;               // 도주 방향
 
+    private Animator playerAnim;                  // 플레이어 애니메이션
+
     void Start()
     {
         InputSettings = PlayerManager.Instance.InputSettings;
@@ -29,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
         dodgeDuration = PlayerManager.Instance.dodgeDuration;
         dodgeCooldown = PlayerManager.Instance.dodgeCooldown;
         cameraTf = PlayerManager.Instance.cameraTf;
+        playerAnim = PlayerManager.Instance.playerAnim;
         
 
         dodgeCooldownTimer = 0f;
@@ -87,6 +90,7 @@ public class PlayerMovement : MonoBehaviour
         if(isDodging)
         {
             thisRigidbody.linearVelocity = dodgeDir * dodgeSpeed;
+            playerAnim.SetBool("Move", false);
         }
         else
         {
@@ -94,6 +98,7 @@ public class PlayerMovement : MonoBehaviour
             if(moveDir == Vector3.zero)
             {
                 thisRigidbody.linearVelocity = new Vector3(0, thisRigidbody.linearVelocity.y, 0);
+                playerAnim.SetBool("Move", false);
                 return;
             }
             else
@@ -101,9 +106,11 @@ public class PlayerMovement : MonoBehaviour
                 thisRigidbody.linearVelocity = new Vector3(moveDir.x*moveSpeed,         // X
                                                         thisRigidbody.linearVelocity.y, // Y
                                                         moveDir.z*moveSpeed);           // Z
+
+                // 이동 애니메이션
+                playerAnim.SetBool("Move", true);
             }
         }
-        
     }
 
     /* 구르기 처리 */

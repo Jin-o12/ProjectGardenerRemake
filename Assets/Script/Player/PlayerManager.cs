@@ -7,6 +7,7 @@ public class PlayerManager : MonoBehaviour
     [Header("Component")]
     public InputSettings InputSettings;         // 입력 설정 컴포넌트
     public Transform cameraTf;                  // 카메라 트랜스폼
+    public Animator playerAnim;
 
     [Header("Player Info: Health")]
     public int maxHealth = 100;
