@@ -14,7 +14,7 @@ TagManager:
   - Water
   - UI
   - PlayerInvincible
-  - GridLayer
+  - GridTile
   - Plane
   - Enemy
   - 

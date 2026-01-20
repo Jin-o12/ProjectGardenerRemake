@@ -1,3 +1,7 @@
+/// <summary>
+/// [GridHoverSelector]
+/// 플레이 화면(카메라가 보는 화면)을 기준으로 필드의 격자를 구분합니다.
+/// </summary>
 using UnityEngine;
 using UnityEngine.EventSystems; // UI 위에 마우스가 있을 때 Raycast를 무시하기 위해 추가
 
@@ -55,7 +59,7 @@ public class GridHoverSelector : MonoBehaviour
                 {
                     Vector3 highlightPosition = new Vector3(
                         xIndex * cellSize + cellSize / 2,
-                        hit.point.y + 0.01f, // 살짝 띄우기
+                        hit.point.y + 0.01f, // y축 살짝 띄워서 겹치지 않게 함
                         zIndex * cellSize + cellSize / 2
                     );
                     currentHighlightQuad.transform.position = highlightPosition;
@@ -83,5 +87,17 @@ public class GridHoverSelector : MonoBehaviour
                 lastHoveredIndex = new Vector2Int(-1, -1);
             }
         }
+    }
+
+    /* 특정 셀에 마우스가 들어왔을 때 */
+    private void OnHoverEnter()
+    {
+        
+    }
+
+    /* 특정 셀에서 마우스가 나갔을 때 */
+    private void OnHoverExit()
+    {
+        
     }
 }
